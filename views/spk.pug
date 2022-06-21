@@ -21,7 +21,7 @@ block content
             .spkVideoWr
                 .spkVideoBox
                     .videoWrapper
-                        video(controls  width="1920" height="720" src="https://static.sber.link/video/rec_1606_0846_f3_ru.mp4")
+                        video(controls playsinline width="1920" height="720" src="https://static.sber.link/video/rec_1606_0846_f3_ru.mp4")
                     .emoWr
                         .emoItem(v-for="item in [1,2,3,4,5]" :class="'emoItem'+item" @click="emoItemClick(item, $event)")
                             img(:src="'/images/emos/'+item+'.svg'")
