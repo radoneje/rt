@@ -21,7 +21,7 @@ router.get('/spk/:eventid',(req, res, next)=>{req.adminAuth(req, res,next)}, asy
   let r=await req.knex.select("*").from("t_events").where({isDeleted:false, shortid:req.params.eventid});
   if(r.length==0)
   return  res.sendStatus(404);
-  res.render('spk',{ spk:req.session.spk, eventid:req.params.eventid });
+  res.render('spk',{ spk:req.session.spk||null, eventid:req.params.eventid });
 });
 router.get('/emo/:eventid', function(req, res, next) {
   res.render('emoTitle', {eventid:req.params.eventid } );
