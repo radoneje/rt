@@ -1,0 +1,58 @@
+doctype html
+html
+    head
+        title RT title
+        <meta charset="UTF-8">
+
+        <meta name="author" content="">
+        <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <link href="/favicon.ico" rel="shortcut icon" >
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/stylesheets/mainStyle.css')
+        script.
+            try {
+                eval("let a=()=>{;;};")
+            } catch (e) {
+                console.log(e)
+                document.location.href = "/badbrowser.html"
+            }
+
+
+    body(style="width:1920px;height:1080px;background:transparent;overflow: hidden;")
+        .emoTitleWr#emoWr
+            .emoTitleBox#emoBox
+        script let eventid=!{JSON.stringify(eventid)}
+        script(src="/lib/socket.io.js")
+        script.
+            let emos=[];
+            let socket = io();
+            socket.on('emo',  (msg)=> {
+                console.log("emo", msg )
+                emos.push(msg);
+            });
+            updateEmo();
+            function updateEmo(){
+                console.log("updateEmo", emos.length)
+                if(emos.length>0){
+                    let item=emos.shift();
+                    createEmo(item);
+                }
+                setTimeout(updateEmo,1000);
+            }
+            function  createEmo(item){
+                console.log("createEmo", item)
+                let elem=document.createElement("div")
+                elem.classList.add("emoTitleItem")
+                let img=document.createElement("img")
+                img.src="/images/emos/"+item.emoid+".svg"
+                let name=document.createElement("div")
+                elem.appendChild(img)
+                elem.appendChild(name)
+                document.getElementById("emoBox").appendChild(elem)
+                name.innerText=item.spkName;
+                setTimeout(()=>{
+                    elem.parentNode.removeChild(elem)
+                },3000)
+
+            }
+

@@ -1,0 +1,34 @@
+extends layout
+
+block content
+    #app(v-if="isLoaded")
+        .loginWr(v-if="!spkid")
+            form.loginBox(method="POST" action="/adminLogin" v-on:submit.prevent="onSubmit")
+                input(type="hidden" value=eventid name="eventid")
+                input(type="hidden" :value="spkid" name="spkid")
+                .loginRow
+                    input.textInput#spkName(v-model="spkName" placeholder="You name" name="name")
+                .loginRow
+                    input.btn(type="submit" value="Log In")
+        .spkWr(v-if="spkid")
+            .spkHeadWr
+                .spkHeadBox
+                    .spkHeadItem
+                        .spkHeadItemText {{spkName}}
+
+                    .btn(@click="logOut" )
+                            .spkHeadItemText Log Out
+            .spkVideoWr
+                .spkVideoBox
+                    .videoWrapper
+                        video(controls  width="1920" height="720" src="https://static.sber.link/video/rec_1606_0846_f3_ru.mp4")
+                    .emoWr
+                        .emoItem(v-for="item in [1,2,3,4,5]" :class="'emoItem'+item" @click="emoItemClick(item, $event)")
+                            img(:src="'/images/emos/'+item+'.svg'")
+
+
+
+    include elems/stdFooterScript
+    script let eventid=!{JSON.stringify(eventid)};
+    script let spk=!{JSON.stringify(spk)}
+    script(src="/javascripts/spkLoginScript.js")

@@ -1,0 +1,10 @@
+{
+  "port": 3002,
+  "pgConnection": {
+    "host": "127.0.0.1",
+    "user": "postgres",
+    "password": "gbplf13",
+    "database": "rt"
+  },
+  "sha256Secret": "Bldfndjrn%hg"
+}

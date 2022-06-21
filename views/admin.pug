@@ -1,0 +1,11 @@
+extends layout
+block head
+  script(src="/javascripts/adminScript.js")
+block content
+  h1= admin
+  #app(v-if="isLoaded")
+    .btn(@click="createEvent") Create Event
+    .eventsWr
+      .event(v-for="item in events")
+        .eventTitle {{moment(item.date).format('DD.MM.YYYY HH:mm')}}  {{item.shortid}}
+  include elems/stdFooterScript
