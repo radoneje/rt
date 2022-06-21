@@ -7,8 +7,7 @@ async function adminAuth(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log(1);
-  res.render('index', { title: 'Express' });
+  res.send("Путь праведника труден,<br> ибо препятствуют ему себялюбивые и тираны из злых людей.<br> Блажен тот пастырь, кто во имя милосердия и доброты ведет слабых за собой сквозь долину тьмы, <br>ибо именно он и есть тот самый, кто воистину печется о ближних своих.");
 });
 router.get('/badbrowser', function(req, res, next) {
   console.log(1);
