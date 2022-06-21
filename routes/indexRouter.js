@@ -16,7 +16,7 @@ router.get('/badbrowser', function(req, res, next) {
 router.get('/admin',(req, res, next)=>{req.adminAuth(req, res,next)}, function(req, res, next) {
   res.render('admin' );
 });
-router.get('/spk/:eventid',(req, res, next)=>{req.adminAuth(req, res,next)}, async (req, res, next)=> {
+router.get('/spk/:eventid', async (req, res, next)=> {
   let r=await req.knex.select("*").from("t_events").where({isDeleted:false, shortid:req.params.eventid});
   if(r.length==0)
   return  res.sendStatus(404);
